@@ -37,7 +37,7 @@ var callbackFn = function(location) {
     var request_parms = { gps_longitude: location.longitude,
 			  gps_latitude:  location.latitude,
 			  method:        'send_position',
-			  device_id:     device_id_mgr.get(),
+			  device_id:     'DEV_42',
     };
     ajax_request (request_parms);
 
@@ -53,7 +53,7 @@ function init_background_gps () {
 	    url: 'https://eng.geopeers.com/api', // <-- Android ONLY:  your server url to send locations to 
 		params: {
 		    method:    'send_position',
-		    device_id: device_id_mgr.get(),
+		    device_id: 'DEV_42',
 		    },
 		// headers: {                                   // <-- Android ONLY:  Optional HTTP headers sent to your configured #url when persisting locations
 		// "X-Foo": "BAR"
