@@ -4,7 +4,7 @@ window.navigator.geolocation.getCurrentPosition(function(location) {
         console.log('Location from Phonegap');
     });
 
-var bgGeo = window.plugins.backgroundGeoLocation;
+var bgGeo;
 
 function ajax_request (request_parms, success_callback, failure_callback) {
     var url = "https://eng.geopeers.com/api";
@@ -48,6 +48,7 @@ var failureFn = function(error) {
 };
 
 function init_background_gps () {
+    bgGeo = window.plugins.backgroundGeoLocation;
     bgGeo.configure(callbackFn, failureFn, {
 	    url: 'https://eng.geopeers.com/api', // <-- Android ONLY:  your server url to send locations to 
 		params: {
