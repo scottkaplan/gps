@@ -50,22 +50,24 @@ var failureFn = function(error) {
 function init_background_gps () {
     bgGeo = window.plugins.backgroundGeoLocation;
     bgGeo.configure(callbackFn, failureFn, {
-	    url: 'https://eng.geopeers.com/api', // <-- Android ONLY:  your server url to send locations to 
-		params: {
-		    method:    'send_position',
-		    device_id: 'DEV_42',
-		    },
-		// headers: {                                   // <-- Android ONLY:  Optional HTTP headers sent to your configured #url when persisting locations
+	    // Android only
+	    url: 'http://eng.geopeers.com/api',
+	    params: {
+		method:    'send_position',
+		device_id: 'DEV_42',
+	    },
+	    // headers: {
 		// "X-Foo": "BAR"
-		// },
-		notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
-		notificationText: 'ENABLED', // <-- android only, customize the text of the notification
-		desiredAccuracy: 10,
-		stationaryRadius: 20,
-		distanceFilter: 30, 
-		activityType: 'AutomotiveNavigation',
-		debug: true // <-- enable this hear sounds for background-geolocation life-cycle.
-		});
+	    // },
+	    notificationTitle: 'Background tracking', // customize the title of the notification
+	    notificationText: 'ENABLED',              // customize the text of the notification
+
+	    desiredAccuracy: 10,
+	    stationaryRadius: 20,
+	    distanceFilter: 30, 
+	    activityType: 'AutomotiveNavigation',
+	    debug: true // <-- enable this hear sounds for background-geolocation life-cycle.
+	});
 
     // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
     bgGeo.start();
