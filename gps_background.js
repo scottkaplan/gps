@@ -1,9 +1,3 @@
-//
-//
-// after deviceready
-//
-//
-
 // Your app must execute AT LEAST ONE call for the current position via standard Cordova geolocation,
 //  in order to prompt the user for Location permission.
 window.navigator.geolocation.getCurrentPosition(function(location) {
@@ -12,12 +6,17 @@ window.navigator.geolocation.getCurrentPosition(function(location) {
 
 var bgGeo = window.plugins.backgroundGeoLocation;
 
-/**
- * This would be your own callback for Ajax-requests after POSTing background geolocation to your server.
- */
-var yourAjaxCallback = function(response) {
-    ////
-};
+function ajax_request (request_parms, success_callback, failure_callback) {
+    var url = "https://eng.geopeers.com/api";
+    $.ajax({type:  "POST",
+	    async: true,
+	    url:   url,
+	    data:  request_parms,
+	  })
+	.done(success_callback)
+	.fail(failure_callback);
+    return;
+}
 
 /**
  * This callback will be executed every time a geolocation is recorded in the background.
@@ -40,7 +39,7 @@ var callbackFn = function(location) {
 			  method:        'send_position',
 			  device_id:     device_id_mgr.get(),
     };
-    ajax_request (request_parms, send_position_callback, send_position_failure_callback);
+    ajax_request (request_parms);
 
 };
 
@@ -73,3 +72,5 @@ function init_background_gps () {
     // If you wish to turn OFF background-tracking, call the #stop method.
     // bgGeo.stop();
 }
+
+document.addEventListener("deviceready", init_background_gps, false);
