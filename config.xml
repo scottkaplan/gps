@@ -17,6 +17,5 @@
       Scott Kaplan
     </author>
 
-    <gap:plugin name="org.apache.cordova.geolocation" />
     <gap:plugin name="org.transistorsoft.cordova.background-geolocation" />
 </widget>
